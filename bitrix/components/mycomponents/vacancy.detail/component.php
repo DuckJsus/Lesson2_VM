@@ -25,6 +25,7 @@ $arParams["IBLOCK_TYPE"] = trim($arParams["IBLOCK_TYPE"]);
 if($arParams["IBLOCK_TYPE"] == '')
 	$arParams["IBLOCK_TYPE"] = "vacancies";
 $arParams["IBLOCK_ID"] = trim($arParams["IBLOCK_ID"]);
+$arParams["CHECK_DATES"] = $arParams["CHECK_DATES"]!="N";
 
 if(empty($arParams["PROPERTY_CODE"]) || !is_array($arParams["PROPERTY_CODE"]))
 	$arParams["PROPERTY_CODE"] = array();
@@ -74,46 +75,14 @@ if($this->startResultCache(false, array()))
 		"NAME",
 		"DETAIL_PAGE_URL",
 		"LIST_PAGE_URL",
-		"PREVIEW_TEXT",
-		"PREVIEW_TEXT_TYPE",
+		"DETAIL_TEXT",
+		"DETAIL_TEXT_TYPE",
 	);
 	$bGetProperty = !empty($arParams["PROPERTY_CODE"]);
-	//WHERE
-	$arFilter = array (
-		"IBLOCK_ID" => $arResult["ID"],
-		"IBLOCK_LID" => SITE_ID,
-		"ACTIVE" => "Y",
-	);
-
-	$shortSelect = array('ID', 'IBLOCK_ID');
-	foreach (array_keys($arSort) as $index)
-	{
-		if (!in_array($index, $shortSelect))
-		{
-			$shortSelect[] = $index;
-		}
-	}
-
-	//Get items parametrs
-	$arResult["ITEMS"] = array();
-	$arResult["ELEMENTS"] = array();
-	$rsElement = CIBlockElement::GetList($arSort, array_merge($arFilter), false, array(), $shortSelect);
-	while ($row = $rsElement->Fetch())
-	{
-		$id = (int)$row['ID'];
-		$arResult["ITEMS"][$id] = $row;
-		$arResult["ELEMENTS"][] = $id;
-	}
-	unset($row);
-
-	if (!empty($arResult['ITEMS']))
-	{
+	
 		$elementFilter = array(
-			"IBLOCK_ID" => $arResult["ID"],
-			"IBLOCK_LID" => SITE_ID,
-			"ID" => $arResult["ELEMENTS"]
+			"ID" => $_REQUEST["ELEMENT_ID"],
 		);
-
 		
 		$iterator = CIBlockElement::GetList(array(), $elementFilter, false, false, $arSelect);
 		$iterator->SetUrlTemplates($arParams["DETAIL_URL"], "", $arParams["IBLOCK_URL"]);
@@ -150,18 +119,6 @@ if($this->startResultCache(false, array()))
 				$elementFilter
 			);
 		}
-	}
-
-	//Get sections list
-	$arSelect = array("ID", "NAME", "DEPTH_LEVEL");
-	$arFilter = array('IBLOCK_ID'=>$arParams["IBLOCK_ID"]); 
-	$rsSect = CIBlockSection::GetList(Array("SORT"=>"ASC"), $arFilter, false, $arSelect, false);
-	while ($arSect = $rsSect->Fetch())
-	{
-		$arResult["GROUPS"][] = $arSect;
-	}
-	unset($rsSect);
-
 	$arResult['ITEMS'] = array_values($arResult['ITEMS']);
 
 	foreach ($arResult["ITEMS"] as &$arItem)
@@ -180,19 +137,17 @@ if($this->startResultCache(false, array()))
 				}
 			}
 		}
-
-		
-
-		
 	}
 	unset($arItem);
 
 	//Формирование массива с ключами кэша
 	$this->setResultCacheKeys(array(
-		"ID",
+        "ID",
+        "IBLOCK_ID",
 		"NAME",
 		"ELEMENTS",
-		"IPROPERTY_VALUES",
+        "IPROPERTY_VALUES",
+        "PROPERTIES",
 	));
 
 	//component template connection
