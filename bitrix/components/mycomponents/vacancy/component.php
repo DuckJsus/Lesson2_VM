@@ -14,7 +14,7 @@
 $arDefaultUrlTemplates404 = array(
 	"list" => "",
 	"detail" => "#ELEMENT_ID#/",
-	"resume" => "#ELEMENT_ID#/resume/"
+	"resume" => "resume/#ELEMENT_ID#/"
 );
 
 $arDefaultVariableAliases404 = array();
@@ -30,25 +30,15 @@ $arComponentVariables = array(
 
 if($arParams["SEF_MODE"] == "Y")
 {
-	dump("SEF_URL_TEMPLATES");
-	dump($arParams["SEF_URL_TEMPLATES"]);
 	$arVariables = array();
 	$arUrlTemplates = CComponentEngine::makeComponentUrlTemplates($arDefaultUrlTemplates404, $arParams["SEF_URL_TEMPLATES"]);
 	$arVariableAliases = CComponentEngine::makeComponentVariableAliases($arDefaultVariableAliases404, $arParams["VARIABLE_ALIASES"]);
-	dump("arUrlTemplates");
-	dump($arUrlTemplates);
 	$engine = new CComponentEngine($this);
 	if (CModule::IncludeModule('iblock'))
 	{
 		$engine->addGreedyPart("#SECTION_CODE_PATH#");
 		$engine->setResolveCallback(array("CIBlockFindTools", "resolveComponentEngine"));
 	}
-	dump("arParams");
-	dump($arParams["SEF_FOLDER"]);
-	dump("arUrlTemplates");
-	dump($arUrlTemplates);
-	dump("arVariables");
-	dump($arVariables);
 	$componentPage = $engine->guessComponentPath(
 		$arParams["SEF_FOLDER"],
 		$arUrlTemplates,
@@ -128,5 +118,4 @@ else
 		"ALIASES" => $arVariableAliases
 	);
 }
-
 $this->includeComponentTemplate($componentPage);

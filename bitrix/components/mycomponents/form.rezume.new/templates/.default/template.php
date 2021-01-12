@@ -79,7 +79,7 @@ if ($arResult["isFormTitle"])
 				<?if (!$arResult["QUESTIONS"][$FIELD_SID]["VACANCY_NAME"]):?>
 					<?=$arQuestion["HTML_CODE"]?>
 				<?else:?>
-					<?=str_replace('value', 'value='.'"'.$arResult["QUESTIONS"][$FIELD_SID]["VACANCY_NAME"].'"' ,$arQuestion["HTML_CODE"]);?>
+					<?=str_replace('value', 'value='.'"'.$arResult["QUESTIONS"][$FIELD_SID]["VACANCY_NAME"].'" '.'readonly' ,$arQuestion["HTML_CODE"]);?>
 				<?endif;?>
 			</td>
 		</tr>

@@ -114,7 +114,6 @@ if($this->startResultCache(false, array()))
 			"ID" => $arResult["ELEMENTS"]
 		);
 
-		
 		$iterator = CIBlockElement::GetList(array(), $elementFilter, false, false, $arSelect);
 		$iterator->SetUrlTemplates($arParams["DETAIL_URL"], "", $arParams["IBLOCK_URL"]);
 		while ($arItem = $iterator->GetNext())

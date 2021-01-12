@@ -73,6 +73,7 @@ if($this->startResultCache(false, array()))
 		"IBLOCK_ID",
 		"IBLOCK_SECTION_ID",
 		"NAME",
+		"RESUME_PAGE_URL",
 		"DETAIL_PAGE_URL",
 		"LIST_PAGE_URL",
 		"DETAIL_TEXT",
@@ -81,7 +82,8 @@ if($this->startResultCache(false, array()))
 	$bGetProperty = !empty($arParams["PROPERTY_CODE"]);
 	
 		$elementFilter = array(
-			"ID" => $_REQUEST["ELEMENT_ID"],
+			"ID" => $arParams["ELEMENT_ID"],
+			"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 		);
 		
 		$iterator = CIBlockElement::GetList(array(), $elementFilter, false, false, $arSelect);

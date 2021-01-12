@@ -16,6 +16,7 @@ $this->addExternalCss("/bitrix/css/main/.default/vacancies/template_style.css");
 $this->addExternalJS("/bitrix/js/.default/vacancies/jquery-1.8.2.min.js");
 $this->addExternalJS("/bitrix/js/.default/vacancies/functions.js");
 ?>
+
 <div class="sb_nav">
 	<?foreach($arResult["GROUPS"] as $arGroup):?>
 		<b><?if($arGroup["NAME"]):?></b>

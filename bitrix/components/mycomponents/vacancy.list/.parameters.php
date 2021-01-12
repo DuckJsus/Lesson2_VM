@@ -6,7 +6,7 @@ if(!CModule::IncludeModule("iblock"))
 	return;
 
 $arTypesEx = CIBlockParameters::GetIBlockTypes(array("-"=>" "));
-dump("dsfghnjmn bvcx");
+
 $arIBlocks=array();
 $db_iblock = CIBlock::GetList(array("SORT"=>"ASC"), array("SITE_ID"=>$_REQUEST["site"], "TYPE" => ($arCurrentValues["IBLOCK_TYPE"]!="-"?$arCurrentValues["IBLOCK_TYPE"]:"")));
 while($arRes = $db_iblock->Fetch())

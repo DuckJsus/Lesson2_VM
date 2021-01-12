@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?><?
-
+CModule::IncludeModule('iblock');
 if (CModule::IncludeModule("form"))
 {
 	$GLOBALS['strError'] = '';
@@ -939,7 +939,7 @@ if (CModule::IncludeModule("form"))
 		
 		//Устанавливаем название вакансии
 		if(CModule::IncludeModule('iblock')) {
-			$res = CIBlockElement::GetByID($_REQUEST{"ELEMENT_ID"});
+			$res = CIBlockElement::GetByID($arParams["ELEMENT_ID"]);
 			if($ar_res = $res->GetNext())
 				$vacancyName = $ar_res["NAME"];
 

@@ -48,10 +48,7 @@ $arComponentParameters = array(
 				"DEFAULT" => "#ELEMENT_ID#/",
 				"VARIABLES" => array(
 					"ELEMENT_ID",
-					"ELEMENT_CODE",
-					"SECTION_ID",
-					"SECTION_CODE",
-					"SECTION_CODE_PATH",),
+					"ELEMENT_CODE",),
 			),
 			"resume" => array(
 				"NAME" => GetMessage("T_IBLOCK_SEF_PAGE_VACANCIES_DETAIL"),
@@ -62,7 +59,7 @@ $arComponentParameters = array(
 					"SECTION_ID",
 					"SECTION_CODE",
 					"SECTION_CODE_PATH", 
-					"RESUME_ID"),
+					"RESUME_ID",),
 			),
 		),
 		"AJAX_MODE" => array(),
