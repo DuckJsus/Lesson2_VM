@@ -18,18 +18,17 @@ $this->addExternalJS("/bitrix/js/.default/vacancies/functions.js");
 ?>
 
 <div class="sb_nav">
-	<?foreach($arResult["ITEMS"] as $arItem):?>
 		<!--Эрмитаж-->
 		<?
 		$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
 		$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage(
 			'CT_BNL_ELEMENT_DELETE_CONFIRM')));
 		?>
-		<?if($arItem["NAME"]):?>
-			<p><b><?echo $arItem["NAME"]?></b></p><br />
+		<?if($arResult["NAME"]):?>
+			<p><b><?echo $arResult["NAME"]?></b></p><br />
 		<?endif;?>
 		
-		<?foreach($arItem["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
+		<?foreach($arResult["DISPLAY_PROPERTIES"] as $pid=>$arProperty):?>
 			<p>
 			<b><?=$arProperty["NAME"]?>:&nbsp;</b>
 			<?if(is_array($arProperty["DISPLAY_VALUE"])):?>
@@ -40,8 +39,7 @@ $this->addExternalJS("/bitrix/js/.default/vacancies/functions.js");
 			</p><br />
 		<?endforeach;?>
 
-		<?if($arParams["DISPLAY_DETAIL_TEXT"] == "Y" && $arItem["DETAIL_TEXT"]):?>
-			<p><b><?=GetMessage("DESCRIPTION_DETAIL_TEXT");?></b><?echo $arItem["DETAIL_TEXT"];?></p><br />
+		<?if($arParams["DISPLAY_DETAIL_TEXT"] == "Y" && $arResult["DETAIL_TEXT"]):?>
+			<p><b><?=GetMessage("DESCRIPTION_DETAIL_TEXT");?></b><br /><br /><?echo $arResult["DETAIL_TEXT"];?></p><br />
 		<?endif;?>
-	<?endforeach;?>
 </div>
