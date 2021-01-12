@@ -56,6 +56,7 @@ if ($arResult["isFormTitle"])
 		</tr>
 	</thead>
 	<tbody>
+
 	<?
 	foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion)
 	{
@@ -74,7 +75,13 @@ if ($arResult["isFormTitle"])
 				<?=$arQuestion["CAPTION"]?><?if ($arQuestion["REQUIRED"] == "Y"):?><?=$arResult["REQUIRED_SIGN"];?><?endif;?>
 				<?=$arQuestion["IS_INPUT_CAPTION_IMAGE"] == "Y" ? "<br />".$arQuestion["IMAGE"]["HTML_CODE"] : ""?>
 			</td>
-			<td><?=$arQuestion["HTML_CODE"]?></td>
+			<td>
+				<?if (!$arResult["QUESTIONS"][$FIELD_SID]["VACANCY_NAME"]):?>
+					<?=$arQuestion["HTML_CODE"]?>
+				<?else:?>
+					<?=str_replace('value', 'value='.'"'.$arResult["QUESTIONS"][$FIELD_SID]["VACANCY_NAME"].'" '.'readonly' ,$arQuestion["HTML_CODE"]);?>
+				<?endif;?>
+			</td>
 		</tr>
 	<?
 		}
@@ -102,7 +109,7 @@ if($arResult["isUseCaptcha"] == "Y")
 	<tfoot>
 		<tr>
 			<th colspan="2">
-				<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=htmlspecialcharsbx(strlen(trim($arResult["arForm"]["BUTTON"])) <= 0 ? GetMessage("FORM_ADD") : $arResult["arForm"]["BUTTON"]);?>" />
+				<input <?=(intval($arResult["F_RIGHT"]) < 10 ? "disabled=\"disabled\"" : "");?> type="submit" name="web_form_submit" value="<?=GetMessage("FORM_ADD")?>" />
 				<?if ($arResult["F_RIGHT"] >= 15):?>
 				&nbsp;<input type="hidden" name="web_form_apply" value="Y" /><input type="submit" name="web_form_apply" value="<?=GetMessage("FORM_APPLY")?>" />
 				<?endif;?>
