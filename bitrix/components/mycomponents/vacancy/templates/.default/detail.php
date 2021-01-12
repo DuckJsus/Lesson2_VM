@@ -39,4 +39,4 @@ $this->setFrameMode(true);
 </div>
 
 
-<p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["list"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
+<p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["list"]?>"><?=GetMessage("T_VACANCY_DETAIL_BACK")?></a></p>

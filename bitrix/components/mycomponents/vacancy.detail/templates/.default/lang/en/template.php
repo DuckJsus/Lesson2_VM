@@ -1,4 +1,4 @@
 <?
 $MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "All the information linked to this record will be deleted. Continue anyway?";
-$MESS["DESCRIPTION_PREVIEW_TEXT"] = "Description:  ";
+$MESS["DESCRIPTION_DETAIL_TEXT"] = "Description:  ";
 ?>

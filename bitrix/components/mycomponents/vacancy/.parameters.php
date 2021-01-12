@@ -35,7 +35,7 @@ $arComponentParameters = array(
 	"PARAMETERS" => array(
 		"VARIABLE_ALIASES" => array(
 			"SECTION_ID" => array("NAME" => GetMessage("BN_P_SECTION_ID_DESC")),
-			"ELEMENT_ID" => array("NAME" => GetMessage("NEWS_ELEMENT_ID_DESC")),
+			"ELEMENT_ID" => array("NAME" => GetMessage("VACANCY_ELEMENT_ID_DESC")),
 		),
 		"SEF_MODE" => array(
 			"list" => array(
